@@ -309,6 +309,7 @@
   .unsaid-lines{ min-height:220px; display:flex; flex-direction:column; justify-content:center; gap:16px;}
   .unsaid-line{ font-style:italic; font-size:22px; font-weight:500; line-height:1.75; opacity:0; transform:translateY(6px); transition:opacity .8s ease, transform .8s ease; }
   .unsaid-line.show{ opacity:1; transform:translateY(0); }
+  .unsaid-line.emphasis{ font-size:32px; font-weight:700; font-style:normal; color:var(--rose); letter-spacing:.01em; }
   .unsaid-hint{ font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:.08em; margin-top:30px; opacity:.7; }
 
   /* ========== FINAL LETTER ========== */
@@ -642,10 +643,10 @@ const hushLines = ["A few things", "I wanted you to know."];
 
 const unsaidLines = [
   "พี่ดีใจนะที่ได้รู้จักหนู",
-  "พี่ชอบเวลาหนูเล่าอะไรแล้วตาเป็นประกาย",
+  "พี่ชอบเวลาหนูเล่าอะไรให้ฟัง",
   "พี่ชอบที่หนูเป็นหนู",
   "ไม่ต้องพยายามเป็นอะไรให้มากกว่านี้หรอกค่ะ<br>แบบนี้ก็น่ารักมากแล้ว",
-  "มีบางครั้งที่พี่เห็นหนูยุ่ง ๆ แล้วก็แอบคิดว่า<br>คนอะไรจะเอาจริงเอาจังกับชีวิตขนาดนี้",
+  "มีบางครั้งที่พี่ได้ฟังหนูเล่าเรื่องของตัวเองแล้วก็แอบคิดว่า<br>คนอะไรจะเติบโตมาได้น่ารักขนาดนี้",
   "แล้วก็…พี่คงไม่พูดหรอกว่าหนูมีอิทธิพลกับวันธรรมดาของพี่แค่ไหน",
   "แต่หนูมีนะ"
 ];
@@ -816,7 +817,7 @@ let unsaidIndex = -1;
 function renderUnsaidStep(){
   unsaidWrap.innerHTML = '';
   const el = document.createElement('div');
-  el.className = 'unsaid-line';
+  el.className = 'unsaid-line' + (unsaidIndex === unsaidLines.length - 1 ? ' emphasis' : '');
   el.innerHTML = unsaidLines[unsaidIndex];
   unsaidWrap.appendChild(el);
   requestAnimationFrame(()=> requestAnimationFrame(()=> el.classList.add('show')));
@@ -830,7 +831,7 @@ document.getElementById('unsaid').addEventListener('click', ()=>{
     if(unsaidIndex === unsaidLines.length - 1){
       unsaidWrap.innerHTML = '';                  // เคลียร์จอให้ว่างก่อน เกิดจังหวะเงียบ
       document.getElementById('unsaidHint').textContent = '';
-      setTimeout(renderUnsaidStep, 1400);          // หน่วงก่อนค่อยขึ้นบรรทัดสุดท้าย
+      setTimeout(renderUnsaidStep, 900);          // หน่วงก่อนค่อยขึ้นบรรทัดสุดท้าย
     } else {
       renderUnsaidStep();
     }
