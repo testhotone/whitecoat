@@ -358,7 +358,7 @@
     <div class="to-tag">TO FAVORITE HUMAN</div>
     <h1 class="headline">Welcome to your<br>white coat era.</h1>
     <p class="lede slow">กว่าจะมาถึงวันนี้ หนูคงผ่านอะไรมาเยอะ<br>
-    วันนี้เลยอยากให้มีใครสักคนบอกว่าหนูเก่งมากแล้วจริง ๆ</p>
+    วันนี้พี่เลยอยากพาหนูแวะดูอะไรเล็ก ๆ ก่อนจะก้าวต่อไป</p>
     <button class="play-btn" id="openBtn" aria-label="open your little surprise">
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
         <circle cx="32" cy="32" r="31" fill="var(--ink)" />
@@ -809,7 +809,7 @@ function renderUnsaidStep(){
   el.className = 'unsaid-line';
   el.innerHTML = unsaidLines[unsaidIndex];
   unsaidWrap.appendChild(el);
-  requestAnimationFrame(()=> el.classList.add('show'));
+  requestAnimationFrame(()=> requestAnimationFrame(()=> el.classList.add('show')));
 }
 document.getElementById('unsaid').addEventListener('click', ()=>{
   if(unsaidIndex === -1){
