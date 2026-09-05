@@ -817,15 +817,18 @@ document.getElementById('unsaid').addEventListener('click', ()=>{
     renderUnsaidStep();
   } else if(unsaidIndex < unsaidLines.length - 1){
     unsaidIndex++;
-    renderUnsaidStep();
     if(unsaidIndex === unsaidLines.length - 1){
+      unsaidWrap.innerHTML = '';                  // เคลียร์จอให้ว่างก่อน เกิดจังหวะเงียบ
       document.getElementById('unsaidHint').textContent = '';
+      setTimeout(renderUnsaidStep, 1400);          // หน่วงก่อนค่อยขึ้นบรรทัดสุดท้าย
+    } else {
+      renderUnsaidStep();
     }
   } else {
     goTo('final');
   }
 });
-
+  
 /* ---------------- open button ---------------- */
 document.getElementById('openBtn').addEventListener('click', ()=>{
   goTo('case-presentation');
